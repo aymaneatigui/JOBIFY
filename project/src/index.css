@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@layer base {
+  
+  button {
+    @apply  rounded-xl px-5 py-1
+  }
+}
+body{
+  background:#f7f8f3;
+  font-family: 'Roboto', sans-serif;
+}
+.signup{
+  background: url("./images/img-hero.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+.signup::after{
+  content: " ";
+  background-color: #007456;
+  color: red;
+  font-weight: bold;
+  position:absolute;
+  top:0;
+  bottom: 0;
+  right:0;
+  height:100%;
+  width:100%;
+  z-index:-2;
+  opacity:0.7;
+}
+.hello-animation{
+  animation: hello-animation 3s linear infinite;
+}
+@keyframes hello-animation {
+  0%{
+    transform: translateY(24px);
+  }
+  50%{
+    transform: translateY(-24px);
+  
+  }
+100%{
+  transform: translateY(24px);
+  }
+  
+}
+
