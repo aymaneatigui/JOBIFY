@@ -44,7 +44,7 @@ JOBIFY is a platform that provides a comprehensive range of features designed to
 ## Technologies Used
 
 <p align="center">
-  <img  height="570" src="project_img/techno.png">
+  <img  height="520" src="project_img/techno.png">
 </p>
 
 ## Home Page
