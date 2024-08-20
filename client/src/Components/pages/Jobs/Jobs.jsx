@@ -10,7 +10,9 @@ export default function Jobs() {
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
     const fetchposts = async () => {
-      const posts = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/`);
+      const posts = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/`, {
+        credentials: "include",
+      });
       const postsJson = await posts.json();
 
       if (posts.ok) {

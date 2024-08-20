@@ -38,6 +38,7 @@ export default function useSignup() {
           phone,
           gender,
         }),
+        credentials: "include",
       }
     );
 

@@ -6,7 +6,9 @@ export default function HeadlineCards() {
   // get all the posts with fetch function on render
   const [posts, setPosts] = React.useState([]);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/posts`)
+    fetch(`${process.env.REACT_APP_SERVER_URL}/posts`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
@@ -15,7 +17,7 @@ export default function HeadlineCards() {
       <div className="p-10">
         <h1 className="text-start text-5xl">Latest Jobs</h1>
         <div className="pt-20 grid grid-cols-2 lg:grid-cols-3 gap-5 justify-center">
-          {posts.slice(0,6).map((post) => (
+          {posts.slice(0, 6).map((post) => (
             <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg ease-in-out duration-150 text-start  ">
               <div className="flex justify-evenly items-center">
                 <img
@@ -35,7 +37,7 @@ export default function HeadlineCards() {
               </div>
               <p className="mb-3 font-normal text-gray-700 ">{post.content}</p>
               <div className="flex justify-end">
-                <button  className="inline-flex items-center justify-center px-3 py-2 lg:w-[5rem] text-sm font-medium text-center text-white bg-[#007456] rounded-lg hover:bg-[#0a664d] ">
+                <button className="inline-flex items-center justify-center px-3 py-2 lg:w-[5rem] text-sm font-medium text-center text-white bg-[#007456] rounded-lg hover:bg-[#0a664d] ">
                   <NavLink to={`/community/${post.companie}`}>Apply</NavLink>
                 </button>
               </div>
