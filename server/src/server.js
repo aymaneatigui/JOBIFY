@@ -1,11 +1,17 @@
 const expresse = require("express")
 require("dotenv").config()
+const cors = require("cors");
 const mongoose= require("mongoose")
 const postJob= require("./Routes/jobPosts")
 const userRoute= require("./Routes/userRoute")
 const appliRoute= require("./Routes/application")
 const internRoute= require("./Routes/Internships")
 const app= expresse()
+
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true
+}));
 
 mongoose.connect(process.env.MONG_URI)
 .then(()=>{
