@@ -1,4 +1,8 @@
 client/node_modules
+client/dist
 client/package-lock.json
+
 server/node_modules
+server/dist
 server/package-lock.json
+server/yarn.lock
