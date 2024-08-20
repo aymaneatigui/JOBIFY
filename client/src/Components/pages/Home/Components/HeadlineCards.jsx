@@ -6,7 +6,7 @@ export default function HeadlineCards() {
   // get all the posts with fetch function on render
   const [posts, setPosts] = React.useState([]);
   useEffect(() => {
-    fetch("/posts")
+    fetch(`${process.env.REACT_APP_SERVER_URL}/posts`)
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);

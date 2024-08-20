@@ -9,13 +9,16 @@ export default function useLogin() {
   const Login = async (email, password) => {
     setIsLoading(true);
     setError(null);
-    const response = await fetch("/users/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/users/signin`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
     const json = await response.json();
     if (!response.ok) {
       setError(json.error);

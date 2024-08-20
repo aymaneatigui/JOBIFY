@@ -5,7 +5,6 @@ import Navbar from "../../Navbar";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 
-
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
   const [applications, setApps] = useState([]);
@@ -13,37 +12,34 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const { user } = useAuthContext();
 
-
   if (user) {
-     if(user.user.name !== "aymane"){
-        navigate("/");
-     }
-  }else{
+    if (user.user.name !== "aymane") {
+      navigate("/");
+    }
+  } else {
     navigate("/");
   }
-  
-
 
   useEffect(() => {
-    fetch("/users")
+    fetch(`${process.env.REACT_APP_SERVER_URL}/users`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
   useEffect(() => {
-    fetch("/applications")
+    fetch(`${process.env.REACT_APP_SERVER_URL}/applications`)
       .then((res) => res.json())
       .then((data) => setApps(data));
   }, []);
   //  delete function to do a delete
   const deleteUser = (id) => {
-    fetch("/users/" + id, {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((data) => setUsers(users.filter((user) => user._id !== id)));
   };
   const deletePost = (id) => {
-    fetch("/applications/" + id, {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/applications/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -56,29 +52,26 @@ export default function Dashboard() {
       <Navbar />
       <h1 className="text-3xl p-4 text-gray-800 gap-6">DASHBOARD</h1>
       <div className="flex flex-row gap-5 p-5 justify-center">
-      <p
+        <p
           className={
             nav === true
-            ? "text-gray-800 text-xl py-2 h-10 hover:text-[#007456] cursor-pointer"
-            : "text-xl px-8 py-2  h-10 cursor-pointer rounded-full bg-[#007456] text-white" 
+              ? "text-gray-800 text-xl py-2 h-10 hover:text-[#007456] cursor-pointer"
+              : "text-xl px-8 py-2  h-10 cursor-pointer rounded-full bg-[#007456] text-white"
           }
           onClick={() => setNav(!nav)}
         >
-                    Users
-
+          Users
         </p>
         <p
           className={
             nav === false
               ? "text-gray-800 text-xl py-2 h-10 hover:text-[#007456] cursor-pointer"
-              : "text-xl px-8 py-2 h-10 cursor-pointer rounded-full bg-[#007456] text-white" 
+              : "text-xl px-8 py-2 h-10 cursor-pointer rounded-full bg-[#007456] text-white"
           }
           onClick={() => setNav(!nav)}
         >
           User Submissions
-
         </p>
-        
       </div>
       <div className="p-5 h-4/5">
         <div
@@ -90,10 +83,7 @@ export default function Dashboard() {
         >
           {users.map((elm) => (
             <div class="w-80 p-6 bg-white border border-gray-200 rounded-lg shadow-2xl  max-w-xl mx-auto ">
-              <div
-                className="flex flex-col justify-center items-start gap-3 font-semibold text-gray-700"
-              >
-
+              <div className="flex flex-col justify-center items-start gap-3 font-semibold text-gray-700">
                 <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   {elm.name} {elm.lname}
                 </h5>

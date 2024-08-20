@@ -6,18 +6,41 @@ export default function useSignup() {
   const [isLoading, setIsLoading] = useState();
   // disptch
   const { dispatch } = useAuthContext();
-  const signup = async ( name, lname, age, diploma, email, password, address, phone, gender) => {
+  const signup = async (
+    name,
+    lname,
+    age,
+    diploma,
+    email,
+    password,
+    address,
+    phone,
+    gender
+  ) => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("/users/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, lname, age, diploma, email, password, address, phone, gender }),
-    });
-    
+    const response = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/users/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          lname,
+          age,
+          diploma,
+          email,
+          password,
+          address,
+          phone,
+          gender,
+        }),
+      }
+    );
+
     const json = await response.json();
     if (!response.ok) {
       setError(json.error);
