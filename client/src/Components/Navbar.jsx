@@ -25,7 +25,7 @@ const Navbar = () => {
       }
     };
     fetchposts();
-  }, []);
+  }, [user?.user?.name]);
 
   // Function to remove user token from local storage
   const handleClick = () => {
