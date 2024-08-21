@@ -10,9 +10,12 @@ const app = expresse();
 
 app.use(
   cors({
-    origin: "*", 
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, 
+    origin: [
+      "http://localhost:3000",
+      "https://jobify-aymane.vercel.app",
+      "https://jobify-aymane.vercel.app/",
+    ],
+    methods: "GET,PUT,POST,DELETE",
   })
 );
 

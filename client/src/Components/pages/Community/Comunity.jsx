@@ -55,7 +55,6 @@ export default function Comunity() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
       });
       const json = await response.json();
       if (!response.ok) {

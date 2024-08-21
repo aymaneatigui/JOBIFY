@@ -21,16 +21,12 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/users`,{
-      credentials: "include",
-    })
+    fetch(`${process.env.REACT_APP_SERVER_URL}/users`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/applications`,{
-      credentials: "include",
-    })
+    fetch(`${process.env.REACT_APP_SERVER_URL}/applications`)
       .then((res) => res.json())
       .then((data) => setApps(data));
   }, []);
@@ -38,7 +34,6 @@ export default function Dashboard() {
   const deleteUser = (id) => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/users/${id}`, {
       method: "DELETE",
-      credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => setUsers(users.filter((user) => user._id !== id)));
@@ -46,7 +41,6 @@ export default function Dashboard() {
   const deletePost = (id) => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/applications/${id}`, {
       method: "DELETE",
-      credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => setUsers(users.filter((user) => user._id !== id)));
