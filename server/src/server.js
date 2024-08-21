@@ -8,7 +8,13 @@ const appliRoute = require("./Routes/application");
 const internRoute = require("./Routes/Internships");
 const app = expresse();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", 
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true, 
+  })
+);
 
 mongoose
   .connect(process.env.MONG_URI)
