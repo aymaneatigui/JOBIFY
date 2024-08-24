@@ -8,16 +8,25 @@ const appliRoute = require("./Routes/application");
 const internRoute = require("./Routes/Internships");
 const app = expresse();
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://jobify-aymane.vercel.app",
-      "https://jobify-aymane.vercel.app/",
-    ],
-    methods: "GET,PUT,POST,DELETE",
-  })
-);
+
+app.disable('x-powered-by');
+const corsOption = {
+  origin: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  credentials: true,
+  exposedHeaders: ['x-auth-token'],
+};
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  next();
+});
+app.use(expresse.json({ limit: '10mb' }));
+
+app.use(cors(corsOption));
 
 mongoose
   .connect(process.env.MONG_URI)
